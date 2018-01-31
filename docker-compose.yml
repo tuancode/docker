@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    httpd:
+        build: httpd
+        volumes:
+            - ".:/var/www/api"
+        links:
+            - php
+        ports:
+            - 8080:80
+
+    php:
+        build: php
+        links:
+            - mysql
+
+    mysql:
+        build: mysql
+        volumes:
+            - ".data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
