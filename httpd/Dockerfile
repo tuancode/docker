@@ -12,9 +12,11 @@ RUN apk --update add \
 # Create folder for apache crete PID file
 RUN mkdir -p /run/apache2/
 
-COPY conf/httpd.conf /etc/apache2/httpd.conf
+COPY etc/apache2/httpd.conf /etc/apache2/httpd.conf
 
 EXPOSE 80 443
+
+WORKDIR /var/www
 
 ENTRYPOINT ["httpd"] 
 CMD ["-D", "FOREGROUND"]

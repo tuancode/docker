@@ -2,26 +2,27 @@ version: '3'
 
 services:
     httpd:
-        build: httpd
+        image: tuandock/httpd:1.0
+        container_name: tuandock_http
         volumes:
             - ".:/var/www/api"
-        links:
-            - php
         ports:
             - 8080:80
+        links:
+            - php
 
     php:
-        build: php
-        links:
-            - mysql
+        image: tuandock/php-fpm:1.0
+        container_name: tuandock_php
 
-    mysql:
-        build: mysql
-        volumes:
-            - ".data/db:/var/lib/mysql"
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+#    mysql:
+#        build: mysql
+#        volumes:
+#            - ".data/db:/var/lib/mysql"
+#        environment:
+#            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#            MYSQL_DATABASE: ${MYSQL_DATABASE}
+#            MYSQL_USER: ${MYSQL_USER}
+#            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
