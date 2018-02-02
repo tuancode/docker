@@ -6,15 +6,22 @@ services:
         container_name: tuandock_http
         volumes:
             - ".:/var/www/api"
+        expose:
+          - 80
+          - 443
         ports:
-            - 8080:80
+          - "8080:80"
+          - "443:443"
         links:
-            - php
+          - php
 
     php:
         image: tuandock/php-fpm:1.0
         container_name: tuandock_php
-
+        expose:
+          - 9000
+        ports:
+          - "9000:9000"
 
 #    mysql:
 #        build: mysql

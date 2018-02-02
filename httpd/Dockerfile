@@ -9,12 +9,10 @@ RUN apk --update add \
     apache2-ssl \
     && rm -rf /var/cache/apk/*
 
-# Create folder for apache crete PID file
-RUN mkdir -p /run/apache2/
+# Create folder for apache PID file and virtual host configuration file
+RUN mkdir -p /run/apache2 /etc/apache2/vhost.d
 
 COPY etc/apache2/httpd.conf /etc/apache2/httpd.conf
-
-EXPOSE 80 443
 
 WORKDIR /var/www
 

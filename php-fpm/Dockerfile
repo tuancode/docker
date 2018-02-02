@@ -66,4 +66,5 @@ RUN apk --update add \
 
 COPY etc/php7/conf.d/xdebug.ini /etc/php7/conf.d/xdebug.ini
 
-EXPOSE 9000
+# Run PHP-FPM
+CMD ["php-fpm"]
