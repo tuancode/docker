@@ -12,7 +12,7 @@ RUN apk --update add \
 # Create folder for apache PID file and virtual host configuration file
 RUN mkdir -p /run/apache2 /etc/apache2/vhost.d
 
-COPY etc/apache2/httpd.conf /etc/apache2/httpd.conf
+COPY conf/httpd.conf /etc/apache2/httpd.conf
 
 WORKDIR /var/www
 
