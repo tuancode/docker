@@ -64,7 +64,6 @@ RUN apk --update add \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \
     && rm -rf /var/cache/apk/*
 
-COPY etc/php7/conf.d/xdebug.ini /etc/php7/conf.d/xdebug.ini
+COPY conf/xdebug.ini /etc/php7/conf.d/xdebug.ini
 
-# Run PHP-FPM
-CMD ["php-fpm"]
+EXPOSE 9000

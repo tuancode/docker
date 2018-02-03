@@ -3,16 +3,12 @@ version: '3'
 services:
     httpd:
         image: tuandock/httpd:1.0
-        container_name: tuandock_http
+        container_name: tuandock_httpd
         volumes:
-            - "www:/var/www"
-            - "httpd/logs:/var/log/apache2"
+            - "./www:/var/www/localhost"
+            - "./httpd/logs:/var/log/apache2"
         networks:
             - AMP
-        expose:
-          - 80
-          - 443
-          - 9000
         ports:
           - "8080:80"
           - "443:443"
@@ -23,12 +19,9 @@ services:
         image: tuandock/php-fpm:1.0
         container_name: tuandock_php
         volumes:
-            - "www:/var/www"
-            - "php-fpm/logs:/var/log/php7"
+            - "./php-fpm/logs/:/var/log/php7"
         networks:
             - AMP
-        expose:
-          - 9000
         ports:
           - "9000:9000"
         command: ["php-fpm", "--nodaemonize"]

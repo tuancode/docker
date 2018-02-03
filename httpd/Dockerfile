@@ -16,5 +16,7 @@ COPY conf/httpd.conf /etc/apache2/httpd.conf
 
 WORKDIR /var/www
 
+EXPOSE 80 443 9000
+
 ENTRYPOINT ["httpd"] 
 CMD ["-D", "FOREGROUND"]
