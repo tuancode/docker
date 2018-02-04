@@ -1,5 +1,4 @@
 FROM alpine:3.7
-
 MAINTAINER Tuan <tuancode@icloud.com>
 
 RUN apk --update add \
@@ -25,9 +24,9 @@ RUN apk --update add \
     php7-sqlite3 \
     #php7-bz2 \
     #php7-calendar \
-    #php7-ctype \
+    php7-ctype \
     php7-pcntl \
-    #php7-posix \
+    php7-posix \
     #php7-sockets \
     #php7-sysvmsg \
     #php7-sysvsem \
@@ -39,7 +38,7 @@ RUN apk --update add \
     php7-iconv \
     php7-zip \
     php7-zlib \
-    #php7-shmop \
+    php7-shmop \
     #php7-wddx \
     php7-xmlrpc \
     php7-xsl \
@@ -62,8 +61,15 @@ RUN apk --update add \
     php7-xdebug \
     && ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \
+    && mkdir -p /var/www/localhost \
     && rm -rf /var/cache/apk/*
 
+COPY conf/php.ini /etc/php7/conf.d/50-setting.ini
 COPY conf/xdebug.ini /etc/php7/conf.d/xdebug.ini
+COPY conf/www.conf /etc/php7/php-fpm.d/www.conf
+
+WORKDIR /var/www
 
 EXPOSE 9000
+
+CMD ["php-fpm", "-F"]

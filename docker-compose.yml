@@ -19,21 +19,23 @@ services:
         image: tuandock/php-fpm:1.0
         container_name: tuandock_php
         volumes:
+            - "./www:/var/www"
             - "./php-fpm/logs/:/var/log/php7"
         networks:
             - AMP
         ports:
           - "9000:9000"
-        command: ["php-fpm", "--nodaemonize"]
+        #command: ["php-fpm", "--nodaemonize"]
 
-#    mysql:
-#        build: mysql
-#        volumes:
-#            - ".data/db:/var/lib/mysql"
-#        environment:
-#            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#            MYSQL_DATABASE: ${MYSQL_DATABASE}
-#            MYSQL_USER: ${MYSQL_USER}
-#            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    mysql:
+        build: mysql
+        volumes:
+            - ".data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
 networks:
     AMP:

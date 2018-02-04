@@ -1,5 +1,4 @@
 FROM alpine:3.7
-
 MAINTAINER Tuan <tuancode@icloud.com>
 
 RUN apk --update add \
@@ -16,7 +15,7 @@ COPY conf/httpd.conf /etc/apache2/httpd.conf
 
 WORKDIR /var/www
 
-EXPOSE 80 443 9000
+EXPOSE 80 443
 
 ENTRYPOINT ["httpd"] 
-CMD ["-D", "FOREGROUND"]
+CMD ["-D", "FOREGROUND", "-X"]
