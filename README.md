@@ -2,12 +2,12 @@
 Service docker files
 
 ## Tasklist
-[x] Creating apache httpd Dockerfile and configuration
-[x] Making php-fpm Dockerfile and configuration
-[x] Forming mariadb Dockerfile and configuration
-[x] Linking container by docker compose yaml file
-[ ] Improving container logs information
-[ ] Commiting to docker hub
+- [x] Creating apache httpd Dockerfile and configuration
+- [x] Making php-fpm Dockerfile and configuration
+- [x] Forming mariadb Dockerfile and configuration
+- [x] Linking container by docker compose yaml file
+- [ ] Improving container logs information
+- [ ] Commiting to docker hub
 
 ## Planning
 1.0.0
