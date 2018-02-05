@@ -18,4 +18,4 @@ WORKDIR /var/www
 EXPOSE 80 443
 
 ENTRYPOINT ["httpd"] 
-CMD ["-D", "FOREGROUND", "-X"]
+CMD ["-D", "FOREGROUND"]
