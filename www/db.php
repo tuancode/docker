@@ -1,10 +1,8 @@
 <?php
 /**
- * This file:
- *     Has not been tested
- *     Does not use prepared statements
- *     Is for Proof of Concept only!
+ * This file is used for database connection testing
  */
+
 $host = 'mysql';
 $user = 'root';
 $pass = 'root';
