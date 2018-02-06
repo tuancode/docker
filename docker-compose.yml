@@ -2,40 +2,39 @@ version: '3'
 
 services:
     httpd:
-        image: tuandock/httpd:1.0
-        container_name: tuandock_httpd
+        image: atdock/httpd:2.4
+        container_name: atdock_httpd
         volumes:
-            - "./www:/var/www/localhost"
-            - "./httpd/logs:/var/log/apache2"
+            - "./www:/usr/local/apache2/htdocs"
         networks:
-            - AMP
-        ports:
-          - "8080:80"
-          - "443:443"
+            at_network:
+                ipv4_address: 172.27.1.2
         links:
           - php
 
     php:
-        image: tuandock/php-fpm:1.0
-        container_name: tuandock_php
+        image: atdock/php:7.1
+        container_name: atdock_php
         volumes:
             - "./www:/var/www"
-            - "./php-fpm/logs/:/var/log/php7"
         networks:
-            - AMP
-        ports:
-          - "9000:9000"
-        #command: ["php-fpm", "--nodaemonize"]
+            at_network:
+                ipv4_address: 172.27.1.3
 
     mysql:
-        build: mysql
-        volumes:
-            - ".data/db:/var/lib/mysql"
+        image: atdock/mysql:5.7
+        container_name: atdock_mysql
+#        volumes:
+#            - ".data/db:/var/lib/mysql"
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+            at_network:
+                ipv4_address: 172.27.1.4
 
 networks:
-    AMP:
+    at_network:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.27.1.0/16
