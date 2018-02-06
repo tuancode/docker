@@ -47,3 +47,7 @@ RUN apk add --update --no-cache --virtual .build-deps ${PHPIZE_DEPS} \
     # Clean up
     && apk del .build-deps \
     && rm -rf /var/cache/apk/*
+
+COPY conf/php.ini /usr/local/etc/php/conf.d/
+
+WORKDIR /var/www
