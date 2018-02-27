@@ -1,4 +1,5 @@
 FROM php:7.1-fpm-alpine
+
 MAINTAINER Tuan <tuancode@icloud.com>
 
 ENV PHPIZE_DEPS \
@@ -16,7 +17,8 @@ ENV EXT_DEPS \
     libmcrypt-dev \
     openssl-dev \
     icu-dev \
-    openldap-dev
+    openldap-dev \
+    sqlite-dev
 
 ENV PHP_EXTS \
     bcmath \
@@ -24,6 +26,7 @@ ENV PHP_EXTS \
     ldap \
     opcache \
     pdo_mysql \
+    pdo_sqlite \
     mcrypt \
     intl \
     zip
